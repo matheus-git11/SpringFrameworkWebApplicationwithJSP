@@ -27,6 +27,8 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!--dependency to use JSP -->
+		<!--in version higher or equal java 17 we don't have to use scope tag with Provide-->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>

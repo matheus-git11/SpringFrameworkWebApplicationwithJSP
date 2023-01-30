@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SayHelloController {
 
-    //"say-hello" => "Hello! What are you learning today?"
 
     //say-hello
     // http://localhost:8080/say-hello
@@ -47,4 +46,38 @@ public class SayHelloController {
         return "sayHello";
     }
 
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
