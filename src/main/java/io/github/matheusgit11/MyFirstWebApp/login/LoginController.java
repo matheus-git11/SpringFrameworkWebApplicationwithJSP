@@ -1,27 +1,40 @@
 package io.github.matheusgit11.MyFirstWebApp.login;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 
 @Controller
+@SessionAttributes("name")
 public class LoginController {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final AuthenticationService authenticationService;
 
-    // login => LoginController => loginJsp Method => return "login"=> calling login.jsp
-    //http://localhost:8080/login-jsp?name=matheus
-    @RequestMapping("login-jsp")
-    public String loginJsp(@RequestParam String name , ModelMap model) {
-        //if you want to make anything available to the view(jsp) ,you can put it into ModelMap Class
-        model.put("name",name);
-        logger.debug("Request Param is {}",name);
-        logger.info("i want this printed at info level");
-        logger.warn("i want this printed at warn level");
+    public LoginController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
+
+
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String goToLoginPage() {
         return "login";
     }
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String goToWelcomePage(@RequestParam String name , @RequestParam String password , ModelMap model) {
+
+        if(authenticationService.authenticate(name,password)){
+            model.put("name", name);
+            return "welcome";
+          }else {
+            model.put("errorMessage","Invalid Credentials!");
+            return "login";
+        }
+    }
+
+
+
 }

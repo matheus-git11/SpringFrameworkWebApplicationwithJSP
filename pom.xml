@@ -22,6 +22,35 @@
 
 	<dependencies>
 
+		<!--STATIC CONTENT ARE NOT MANAGED BY SPRING BOOT STARTER PARENT-->
+		<!--SO WE SHOULD USE VERSION TAG -->
+		<!--BOOTSTRAP DEPENDENCY-->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>5.1.3</version>
+		</dependency>
+
+		<!--JQUERY DEPENDENCY TO USE BOOTSTRAP-->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.6.0</version>
+		</dependency>
+
+			<!--JSTL API-->
+		<dependency>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+		</dependency>
+
+			<!--JSTL USE-->
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>glassfish-jstl</artifactId>
+		</dependency>
+
+		<!--USE IN WEB APPLICATIONS-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -34,6 +63,7 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
 
+		<!--RESTART YOUR SPRING APPLICATION AUTOMATICALLY-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -41,6 +71,7 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!--SPRING DEPENDENCY THAT CONTAIN JUNIT FOR TESTINGS-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
