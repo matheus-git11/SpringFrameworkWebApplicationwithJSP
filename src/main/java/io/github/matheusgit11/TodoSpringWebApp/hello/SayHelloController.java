@@ -1,10 +1,8 @@
-package io.github.matheusgit11.MyFirstWebApp.hello;
+package io.github.matheusgit11.TodoSpringWebApp.hello;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller

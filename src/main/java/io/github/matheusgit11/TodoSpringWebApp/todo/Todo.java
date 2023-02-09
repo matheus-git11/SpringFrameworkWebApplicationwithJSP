@@ -1,16 +1,19 @@
-package io.github.matheusgit11.MyFirstWebApp.todo;
+package io.github.matheusgit11.TodoSpringWebApp.todo;
+
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
-public class ToDo {
+public class Todo {
 
     private int id ;
     private String username;
+    @Size(min = 10, message = "Enter at least 10 characters")
     private String description;
     private LocalDate targetDate;
     private boolean done;
 
-    public ToDo(int id, String username, String description, LocalDate targetDate, boolean done) {
+    public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
         this.id = id;
         this.username = username;
         this.description = description;

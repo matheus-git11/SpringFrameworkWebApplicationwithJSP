@@ -1,13 +1,13 @@
-package io.github.matheusgit11.MyFirstWebApp;
+package io.github.matheusgit11.TodoSpringWebApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MyFirstWebAppApplication {
+public class TodoSpringWebApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MyFirstWebAppApplication.class, args);
+		SpringApplication.run(TodoSpringWebApp.class, args);
 	}
 
 }
