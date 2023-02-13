@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.time.LocalDate;
@@ -44,5 +45,15 @@ public class ToDoController {
         toDoService.addTodo(username,todo.getDescription(), LocalDate.now().plusWeeks(2),false);
         return "redirect:list-todos";
     }
+
+    @RequestMapping("delete-todo")
+    public String deleteTodo(@RequestParam int id){
+        toDoService.deleteTodoById(id);
+        return "redirect:list-todos";
+    }
+
+
+
+
 
 }
