@@ -3,7 +3,6 @@
 		<title>Login Page</title>
 	</head>
 	<body>
-
 		<div class="container">
 			<h1>Login</h1>
 			<pre>${errorMessage}</pre>
@@ -13,6 +12,5 @@
 				<input type="submit">
 			</form>
 		</div>
-
 	</body>
 </html>
