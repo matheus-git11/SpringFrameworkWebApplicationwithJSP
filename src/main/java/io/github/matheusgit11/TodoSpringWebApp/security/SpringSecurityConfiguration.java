@@ -15,23 +15,28 @@ public class SpringSecurityConfiguration {
     //LDAP or Database or in memory
     @Bean
     public InMemoryUserDetailsManager createUserDetailsManager(){
+        UserDetails userDetails1 = createNewUser("matheus", "123");
+        UserDetails userDetails2 = createNewUser("ranga", "456");
+        return new InMemoryUserDetailsManager(userDetails1,userDetails2);
+    }
 
+    private UserDetails createNewUser(String username, String password) {
         //lambda function that accept string as input and return string as output
         Function<String, String> passwordEncoder = input -> passwordEncoder().encode(input);
-
-        UserDetails userDetails = User // we're using a builder of UserDetails class to using as constructor for InMemoryUserDetailsManager
+        // we're using a builder of UserDetails class to using as constructor for InMemoryUserDetailsManager
+        UserDetails userDetails = User
                 .builder()
                 .passwordEncoder(passwordEncoder) // calling the lambda function
-                .username("matheus")
-                .password("123")
+                .username(username)
+                .password(password)
                 .roles("USER", "ADMIN")
                 .build();
-
-        return new InMemoryUserDetailsManager(userDetails);
+        return userDetails;
     }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
 }
