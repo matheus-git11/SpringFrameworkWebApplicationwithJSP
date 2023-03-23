@@ -16,11 +16,11 @@ import java.util.List;
 
 @Controller
 @SessionAttributes("name")
-public class ToDoController {
-    private ToDoService toDoService;
+public class ToDoControllerJpa {
+    private TodoRepository todoRepository;
 
-    public ToDoController(ToDoService toDoService) {
-        this.toDoService = toDoService;
+    public ToDoControllerJpa(TodoRepository todoRepository) {
+        this.todoRepository=todoRepository;
     }
 
     private static String getLoggedInUsername(ModelMap model) {
@@ -34,9 +34,8 @@ public class ToDoController {
     @RequestMapping("list-todos")
     public String listAllTodos(ModelMap model){
         String username = getLoggedInUsername(model);
-        List<Todo> todos = toDoService.findByUsername(username);
+        List<Todo> todos = todoRepository.findByUsername(username);
         model.addAttribute("todos",todos);
-
         return "listTodos";
     }
 
@@ -54,18 +53,19 @@ public class ToDoController {
             return "todo";
         }
         String username = getLoggedInUsername(model);
-        toDoService.addTodo(username,todo.getDescription(), todo.getTargetDate(),false);
+        todo.setUsername(username);
+        todoRepository.save(todo);
         return "redirect:list-todos";
     }
 
     @RequestMapping("delete-todo")
     public String deleteTodo(@RequestParam int id){
-        toDoService.deleteTodoById(id);
+        todoRepository.deleteById(id);
         return "redirect:list-todos";
     }
     @RequestMapping(value = "update-todo", method = RequestMethod.GET)
     public String ShowUpdateTodoPage(@RequestParam int id , ModelMap model){
-        Todo todo = toDoService.findById(id);
+        Todo todo = todoRepository.findById(id).get();
         model.addAttribute("todo",todo); // the name of model attribute should match with modelAttribute on To do jsp page
         return "todo";
     }
@@ -77,11 +77,7 @@ public class ToDoController {
         }
         String username = getLoggedInUsername(model);
         todo.setUsername(username);
-        toDoService.updateTodo(todo);
+        todoRepository.save(todo);
         return "redirect:list-todos";
     }
-
-
-
-
 }
